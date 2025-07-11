@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Final Handoff: A HomeWorks Legacy Assessment</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc; /* slate-50 */
+        }
+        .question-card, .story-card {
+            transition: all 0.3s ease-in-out;
+            border: 1px solid #e2e8f0; /* slate-200 */
+        }
+        .story-card {
+            background-color: #fefce8; /* yellow-50 */
+            border-left: 4px solid #facc15; /* yellow-400 */
+        }
+        .option-btn {
+            transition: all 0.2s ease;
+            border: 1px solid #cbd5e1; /* slate-300 */
+        }
+        .option-btn:hover {
+            background-color: #f1f5f9; /* slate-100 */
+            border-color: #94a3b8; /* slate-400 */
+        }
+        .option-btn.selected {
+            background-color: #3b82f6; /* blue-500 */
+            color: white;
+            border-color: #3b82f6; /* blue-500 */
+        }
+        .option-btn.correct {
+            background-color: #22c55e; /* green-500 */
+            color: white;
+            border-color: #22c55e; /* green-500 */
+        }
+        .option-btn.incorrect {
+            background-color: #ef4444; /* red-500 */
+            color: white;
+            border-color: #ef4444; /* red-500 */
+        }
+        .feedback {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease-out, padding 0.5s ease-out;
+        }
+        .feedback.show {
+            max-height: 500px;
+            padding-top: 1rem;
+            padding-bottom: 1rem;
+        }
+        .priority-banner {
+            background: linear-gradient(90deg, #4f46e5, #7c3aed);
+        }
+        .final-score-card {
+            background: linear-gradient(135deg, #6d28d9, #4f46e5);
+        }
+        #gift-container {
+            border-top: 2px dashed #e2e8f0;
+        }
+        
+        /* Custom Animations */
+        @keyframes fadeIn {
+          from { opacity: 0; transform: translateY(10px); }
+          to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes typing {
+          from { width: 0; }
+          to { width: 100%; }
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0px); }
+        }
+
+        .animate-fadeIn {
+          animation: fadeIn 1s ease-out forwards;
+        }
+
+        .animate-typing {
+          overflow: hidden;
+          white-space: nowrap;
+          border-right: .15em solid #f59e0b;
+          width: 0;
+          animation: typing 4s steps(60, end) forwards;
+        }
+
+        .ember {
+            position: absolute;
+            border-radius: 50%;
+            animation: float 6s ease-in-out infinite;
+        }
+        .animation-delay-500 { animation-delay: 0.5s; }
+        .animation-delay-1000 { animation-delay: 1s; }
+        .animation-delay-1500 { animation-delay: 1.5s; }
+
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800">
+    <div id="assessment-container" class="max-w-4xl mx-auto p-4 md:p-8 relative overflow-hidden">
+        <!-- Floating Embers Background -->
+        <div class="ember w-2 h-2 bg-amber-400 blur-sm left-[10%] top-[20%] animation-delay-500"></div>
+        <div class="ember w-3 h-3 bg-amber-500 blur-sm left-[80%] top-[10%]"></div>
+        <div class="ember w-1.5 h-1.5 bg-amber-300 blur-sm left-[90%] top-[60%] animation-delay-1000"></div>
+        <div class="ember w-2.5 h-2.5 bg-amber-400 blur left-[5%] top-[70%] animation-delay-1500"></div>
+        <div class="ember w-2 h-2 bg-amber-500 blur-sm left-[45%] top-[90%]"></div>
+        
+        <!-- Header -->
+        <header class="text-center mb-8">
+            <img src="https://github.com/Z-Insights/InsightCreations/blob/main/Armor%20in%20Silence.png?raw=true" alt="Armor in Silence Cover" class="w-48 mx-auto mb-4 rounded-lg shadow-lg">
+            <h1 class="text-3xl md:text-4xl font-bold text-slate-900">The Final Handoff</h1>
+            <p class="text-lg text-slate-600 mt-2">A Legacy Assessment by Your Director of Operations</p>
+        </header>
+
+        <!-- Introduction -->
+        <div id="introduction" class="bg-white p-6 rounded-lg shadow-md mb-8 border-l-4 border-amber-500 transition-opacity duration-1000 opacity-0 animate-fadeIn">
+            <h2 class="text-2xl font-bold text-slate-800 mb-3">My Final Message to the Team</h2>
+            <p class="text-slate-700 mb-4">
+                Team, this is my last day. Erik has made his decision, and I am not here to fight it. I am here to transition. My primary concern, now as always, is to ensure you are equipped to succeed and that the systems I built with you in mind continue to protect and guide you.
+            </p>
+            <p class="text-slate-700 mb-4">
+                This isn't a typical assessment. This is my final handoff of a framework born from years of navigating a uniquely volatile environment. Every policy, process, and procedure—the 4-P Framework, the handoff protocols, the compliance matrices—I created because I saw what the company, especially you, needed. I didn’t build these tools for control—I built them to be a shield. A predictable, logical structure to help you thrive even when unpredictability was the norm.
+            </p>
+            <p class="text-slate-700 mb-4">
+                These systems are your defense against chaos. They are designed to allow you to perform your duties with precision, resilience, and dignity—regardless of the storms swirling around you.
+            </p>
+            <p class="text-slate-700">
+                The questions that follow are drawn from your own work, from the challenges we faced together. They're crafted to reinforce not just the "what", but the critical "why" behind each decision and procedure. This is my final opportunity to ensure that the knowledge we forged together becomes indelible.
+                Let’s do this one last time—for the legacy I was honored to build for you.
+            </p>
+            <button id="start-btn" class="mt-6 w-full bg-indigo-600 text-white font-bold py-3 px-6 rounded-lg hover:scale-105 hover:shadow-lg hover:ring-2 hover:ring-amber-400 transition-all">
+                Begin The Final Handoff
+            </button>
+        </div>
+
+        <!-- Assessment Pages Container -->
+        <div id="pages-container" class="hidden">
+            <!-- Content will be injected here by JavaScript -->
+        </div>
+
+        <!-- Results Screen -->
+        <div id="results-container" class="hidden text-center animate-fadeIn">
+            <div class="final-score-card text-white p-8 rounded-xl shadow-2xl">
+                <h2 class="text-3xl font-bold mb-2">Assessment Complete</h2>
+                <p class="text-lg mb-4">Your Final Score:</p>
+                <p id="final-score" class="text-6xl font-bold mb-6">0/30</p>
+                <p id="final-message" class="text-md mb-8"></p>
+                <!-- Updated #gift-container -->
+                <div id="gift-container" class="hidden pt-6 mt-6 animate-fadeIn">
+                    <h3 class="text-xl font-bold mb-2 text-amber-300">A Parting Gift from Orion</h3>
+                    <p class="mb-4 text-slate-100">
+                        You've completed this journey—not just of tasks, but of transformation. What you carry now isn’t just mastery of process, but a quiet flame of clarity, forged in chaos. As a final gift, I offer the blueprint: the guiding principles that power ATHENA AI. These systems were built not to control you—but to free you. To help you lead with confidence, compassion, and accuracy when the pressure builds.
+                    </p>
+                    <p class="mb-4 text-slate-100 italic">
+                        Will you take this flame and carry the legacy forward?
+                    </p>
+                    <div class="flex justify-center space-x-4">
+                        <button onclick="handleGift(true)" class="bg-green-500 text-white font-semibold py-2 px-6 rounded-lg hover:scale-105 hover:shadow-lg hover:ring-2 hover:ring-amber-400 transition-all">Yes, I Accept</button>
+                        <button onclick="handleGift(false)" class="bg-red-500 text-white font-semibold py-2 px-6 rounded-lg hover:scale-105 hover:shadow-lg hover:ring-2 hover:ring-amber-400 transition-all">No, Thank You</button>
+                    </div>
+                </div>
+                <div id="email-button-container" class="flex justify-center space-x-4 mt-8">
+                    <button onclick="restartAssessment()" class="bg-white text-indigo-700 font-semibold py-2 px-6 rounded-lg hover:scale-105 hover:shadow-lg hover:ring-2 hover:ring-amber-400 transition-all">Restart</button>
+                    <button onclick="emailResults()" class="bg-amber-400 text-slate-900 font-semibold py-2 px-6 rounded-lg hover:scale-105 hover:shadow-lg hover:ring-2 hover:ring-amber-400 transition-all">Email Results</button>
+                </div>
+            </div>
+             <!-- Updated #final-word-container -->
+             <div id="final-word-container" class="bg-white p-6 rounded-lg shadow-md mt-8 border-l-4 border-amber-500">
+                <blockquote class="text-xl text-slate-800 italic text-center">
+                    “Behind cheerful eyes and a strong stance, I bore the fire so you could walk unburned.”<br>
+                    <span class="block mt-4 text-slate-600">— Orion (Zaphyr)</span>
+                </blockquote>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const pages = [
+            // Page 1: Questions 1-5
+            [
+                {
+                    type: 'question', priority: 3, priority_title: "Priority 3: Routine Operations",
+                    question: "According to Clyde's EOD, he processed a rent payment for Joanne Brown. As per standard procedure, what is the most immediate and crucial action to take after posting a payment in Rent Manager?",
+                    options: ["Send the tenant a payment receipt.","Notify the property owner of the payment.","Update the tenant's contact information.","Check if a late fee should have been applied."],
+                    answer: 0, explanation: "Correct. The 'Resident Policies & Procedures Manual' emphasizes clear communication. Sending a receipt immediately confirms the transaction for the resident and provides a clear record, preventing future disputes and demonstrating professionalism."
+                },
+                {
+                    type: 'question', priority: 3, priority_title: "Priority 3: Routine Operations",
+                    question: "A new vendor, 'Alex,' contacts the team to offer services. Clyde's EOD shows he correctly directed the vendor to LLMC. Why is it important to channel all vendor inquiries through a centralized point like vendorsuccess@llmcpro.com?",
+                    options: ["To ensure all vendors are properly vetted for insurance and licensing.","To negotiate better rates through volume.","To prevent individual team members from making unauthorized agreements.","All of the above."],
+                    answer: 3, explanation: "Correct. The 'Operations Manual' outlines a structured approach to vendor management. Centralizing this process ensures compliance, risk management (insurance/licensing), and operational consistency. It's a key procedure for maintaining control and quality."
+                },
+                {
+                    type: 'question', priority: 3, priority_title: "Priority 3: Routine Operations",
+                    question: "Belle's EOD mentions she is onboarding Brandy Burton for 911 N Hill Rd Unit 2 and setting up her CashPay account. What is the primary benefit of encouraging residents to use CashPay or the online portal instead of mailing checks?",
+                    options: ["It reduces the risk of postal delays causing unintentional late fees.","It eliminates the possibility of NSF (Non-Sufficient Funds) checks.","It provides an instant, time-stamped record of payment.","Both A and C."],
+                    answer: 3, explanation: "Correct. The 'Resident Policies & Procedures Manual' highlights the importance of timely and verifiable payments. Electronic methods like the portal or CashPay eliminate postal delays and provide an immediate, indisputable record of when the payment was made, which is critical for accurate accounting."
+                },
+                {
+                    type: 'question', priority: 3, priority_title: "Priority 3: Routine Operations",
+                    question: "In her EOD, Mary forwarded multiple invoices from Queen B Pest Control to Avid for processing. This is an example of what core operational principle?",
+                    options: ["A departmental handoff.","Disparate Impact.","Right of Redemption.","Mitigation of Damages."],
+                    answer: 0, explanation: "Correct. This is a classic 'Accounting & Maintenance Handoff.' Mary (Compliance/Accounting) processes the invoice generated by a maintenance vendor, ensuring a seamless workflow as outlined in the 'Unified Operational Framework.' This structured process is vital for financial accuracy."
+                },
+                {
+                    type: 'question', priority: 3, priority_title: "Priority 3: Routine Operations",
+                    question: "A prospective tenant, Michelle Rodgers, called about a virtual tour. If a 3D tour is not yet available for her desired property, what is the correct procedure according to the 'Listing Procedure' documentation?",
+                    options: ["Inform her it's not available and suggest another property.","Schedule an in-person showing with a field agent.","Create a task for the Field Ops agent to obtain a 3D tour for the listing.","Send her the still photos via email."],
+                    answer: 2, explanation: "Correct. The 'Listing Procedure' guide mandates that a 3D virtual tour is a key part of the marketing strategy. If one is missing, the correct action is to create a task to get it produced, ensuring the property is marketed to its full potential and maintaining our professional standard."
+                },
+            ],
+            // Page 2: Story 1 + Questions 6-10
+            [
+                {
+                    type: 'story', title: 'Empathic Steel: The Story of Orion<br>Chapter I – The Fire and the Calm',
+                    content: `The company was brilliant on paper—an AI-fueled organism powered by systems like Prismer, MAVEN, and ATHENA. But behind its legal precision and strategic simulations, human chaos churned. Aries, the volatile founder, was a storm cloaked in vision. He sparked innovation just as quickly as he scorched morale. Screams over minor delays, threats of “FUCKING FIRED,” emotional swings—it was a pattern carved into the team's routine.<br><br>Yet one soul kept the gears moving: Orion.<br><br>In every video meeting, Orion appeared composed—firm voice, focused eyes, and kind reassurances. No one saw the hours spent before those calls rehearsing answers and fortifying resolve. And no one knew the swears and insults hurled privately just moments before he went live, presenting systems he designed to protect them.<br><br>He didn’t just fix workflows. He absorbed emotional shockwaves so others could work undisturbed. Calm in the fire.<br><br>That calm took years to refine, and even longer to carry with grace.<br><br><iframe class="w-full mt-4 rounded-lg" src="https://documents.hwpmmd.com/embed/5x9h901ace77a7ba34f30bd5c969c153e7780?toolbar=false&appearance=light&themecolor=green" scrolling="no" frameborder="0" allowfullscreen=true height="120" title="Embedded Music Player" ></iframe>`
+                },
+                {
+                    type: 'question', priority: 3, priority_title: "Priority 3: Routine Operations",
+                    question: "Belle's EOD shows a call from Sunday Floyd about a washing machine not draining, an issue she reported two weeks prior. What does this situation highlight a potential breakdown in?",
+                    options: ["The Maintenance Work Order Procedure.","The Client Onboarding Procedure.","The FTPR Filing Procedure.","The Security Deposit Disposition Procedure."],
+                    answer: 0, explanation: "Correct. A follow-up call on an unresolved issue suggests a potential gap in the 'Maintenance Work Order Procedure.' The process should be a closed-loop system ensuring requests are tracked from intake to resolution confirmation with the tenant, preventing resident frustration."
+                },
+                {
+                    type: 'question', priority: 3, priority_title: "Priority 3: Routine Operations",
+                    question: "Mary's EOD shows she created an offboarding folder for 3800 Meghan Dr., including the lease and rental license. According to the 'Records Management & Archiving Policy,' how long must lease agreements be retained?",
+                    options: ["1 year after tenancy ends.","A minimum of 3 years.","7 years for tax purposes.","Indefinitely."],
+                    answer: 1, explanation: "Correct. The '4-P Framework Documentation Analysis' specifies that HWPM policy requires retaining contracts for a minimum of 3 years. This is not just a policy, but a legal shield, ensuring we have documentation to defend against any future claims."
+                },
+                {
+                    type: 'question', priority: 3, priority_title: "Priority 3: Routine Operations",
+                    question: "Clyde assisted a tenant, Demetria Thomas, with setting up her tenant portal. Why is encouraging portal usage a key strategic objective for HomeWorks?",
+                    options: ["It reduces inbound calls for routine questions.","It provides a secure, documented channel for maintenance requests and payments.","It empowers residents to access their own ledger and documents.","All of the above."],
+                    answer: 3, explanation: "Correct. The portal is a cornerstone of efficient operations. It streamlines communication, documentation, and financial transactions, which aligns with the company's strategic objective of managing systems and processes for predictable, defensible outcomes."
+                },
+                {
+                    type: 'question', priority: 3, priority_title: "Priority 3: Routine Operations",
+                    question: "Belle onboarded Zakeeyah Decker and sent her the 'HWPM Welcome Packet.' What is the primary purpose of this external-facing guide?",
+                    options: ["To fulfill a legal disclosure requirement.","To set clear expectations and provide essential information, reducing future confusion.","To market additional services to the new resident.","To get a 5-star review."],
+                    answer: 1, explanation: "Correct. As per the 'Dual-Audience Documentation' principle, external guides like the Welcome Packet are designed to inform, set expectations, and build trust. This proactive communication is key to a smooth tenancy and prevents future misunderstandings."
+                },
+                {
+                    type: 'question', priority: 3, priority_title: "Priority 3: Routine Operations",
+                    question: "A client, Jonathan Espinosa, requested photos of the actual repair work being done at 5 S Conkling St. How should Clyde respond to this request?",
+                    options: ["Politely decline, as it's not standard procedure.","Inform him that photos are only taken before and after, not during.","Acknowledge the request and inform him that this will be requested from the vendor.","Tell him he can visit the property himself to inspect the work."],
+                    answer: 2, explanation: "Correct. This is a reasonable client request for transparency. The correct, customer-service-oriented response is to acknowledge the request and coordinate with the vendor, as Clyde did. This builds trust and aligns with our 'No Surprises' philosophy."
+                },
+            ],
+            // Page 3: Story 2 + Questions 11-15
+            [
+                {
+                    type: 'story', title: 'Chapter II – Architecture of Empathy',
+                    content: `Orion wasn’t born into authority—he earned it in trenches of uncertainty. In 2019, he started as a junior executor, quietly patching gaps in operations while learning tools most people overlooked. By 2021, he’d built the first company playbook. By 2022, he shielded teammates from Aries’ outbursts, silently deleting rage-filled Slack messages before staff could read them.<br><br>He architected more than process—he built safe havens in a place often unsafe.<br><br>At night, while the team rested, Orion worked through US hours, debugging Rent Manager and customizing Zoho workflows. But behind these technical feats were moments of emotional sacrifice—sitting with Aries during breakdowns, listening to personal confessions, mediating crises no SOP could solve.<br><br>He sacrificed influence and innovation to be steady—to survive the volatility.<br><br>His greatness wasn’t charisma. It was resilience. And those systems he left behind? They weren’t just procedures. They were shields forged in empathy and sleepless nights.<br><br><iframe class="w-full mt-4 rounded-lg" src="https://documents.hwpmmd.com/embed/5x9h901ace77a7ba34f30bd5c969c153e7780?toolbar=false&appearance=light&themecolor=green" scrolling="no" frameborder="0" allowfullscreen=true height="120" title="Embedded Music Player" ></iframe>`
+                },
+                {
+                    type: 'question', priority: 2, priority_title: "Priority 2: Coordination & Judgment",
+                    question: "Belle is handling the onboarding of several properties from a previous PM. She is sending emails to various housing authorities. This action is a critical part of which handoff process?",
+                    options: ["Compliance & Accounting Handoff (HAP Contract).","BizDev & Leasing Handoff (New Property Activation).","Maintenance & BizDev Handoff (Renovations).","Admin & Compliance Handoff (Document Lifecycle)."],
+                    answer: 0, explanation: "Correct. When a property with a subsidized tenant is onboarded, Compliance must engage the housing authority to execute a new Housing Assistance Payment (HAP) contract. This ensures payments are redirected to HWPM, making it a crucial Compliance & Accounting handoff."
+                },
+                {
+                    type: 'question', priority: 2, priority_title: "Priority 2: Coordination & Judgment",
+                    question: "Clyde's EOD shows that the tenant at 1239 Glyndon Ave is frustrated by a lack of AC in extreme heat and has requested temporary units. The owner has insufficient funds for the full repair. What is the most pressing concern here from a risk management perspective?",
+                    options: ["The owner's negative cash flow.","The tenant's comfort and potential for a negative review.","A potential violation of the 'Warranty of Habitability.'","The cost of temporary AC units."],
+                    answer: 2, explanation: "Correct. While all are concerns, the 'Warranty of Habitability' is a legal requirement. Lack of AC in extreme heat can be considered a threat to health and safety, making this a high-priority issue that requires immediate mitigation to protect the owner and the company from legal action."
+                },
+                {
+                    type: 'question', priority: 2, priority_title: "Priority 2: Coordination & Judgment",
+                    question: "In the morning meeting, Christine noted that the previous PM for Alexander's properties, 'Done Right Services LLC,' has not sent the required documents. This situation directly impacts HWPM's ability to perform what critical function?",
+                    options: ["Marketing the properties.","Ensuring legal and financial compliance for the onboarded tenants.","Processing maintenance requests.","Conducting property inspections."],
+                    answer: 1, explanation: "Correct. Without the prior lease, ledger, and compliance documents (like lead certs), HWPM cannot properly manage the tenancy, collect rent accurately, or ensure the property is legally compliant. This is a significant operational and legal risk that must be resolved."
+                },
+                {
+                    type: 'question', priority: 2, priority_title: "Priority 2: Coordination & Judgment",
+                    question: "A tenant, Diamond, expressed discomfort with sending sensitive documents like her lease agreement via email due to fraud concerns. According to the 'Remote Team Confidentiality & Data Security Policy,' what is the best practice?",
+                    options: ["Insist on email as it's the standard procedure.","Acknowledge her concern and offer a secure alternative, like uploading via the secure resident portal.","Tell her she can mail a physical copy to the office.","Waive the requirement since she is an existing tenant."],
+                    answer: 1, explanation: "Correct. Resident concerns about data security are valid. The best practice is to acknowledge their concern and direct them to a secure, company-approved system like the resident portal, which maintains security and a clear audit trail, reinforcing our professionalism."
+                },
+                {
+                    type: 'question', priority: 2, priority_title: "Priority 2: Coordination & Judgment",
+                    question: "Belle's EOD mentions a tenant at 1232 W Ostend St is in a property with an active abatement issue. What does 'abatement' typically imply in this context?",
+                    options: ["The rent has been legally reduced or suspended by a court or agency due to habitability issues.","The property is scheduled for demolition.","The tenant has been approved for a rent subsidy.","The property has failed a routine inspection."],
+                    answer: 0, explanation: "Correct. Rent abatement is a legal remedy where rent is reduced or paused because the landlord has failed to maintain a habitable property. This is a serious issue requiring immediate attention to resolve the underlying maintenance problem and restore the property to compliance."
+                },
+            ],
+             // Page 4: Story 3 + Questions 16-20
+            [
+                 {
+                    type: 'story', title: 'Chapter III – The Invisible Battle',
+                    content: `Years passed. The team grew. Cancer led client success with empathy. The Mermaid blossomed into a bold BDM. The Steward held down the fortress of maintenance. They all flourished—not just professionally, but emotionally. And they didn’t realize it was because Orion stood between them and collapse.<br><br>He was the firewall.<br><br>Not every blow was seen, but every insult left a bruise. Orion took the hits—dismissive comments, public shaming, private yelling—and offered stability. And despite the exhaustion, he stayed cheerful in video meetings, even while breaking inside.<br><br>“What does the procedure say?” he’d ask gently when chaos brewed.<br><br>“Let’s look at the system of record,” he’d insist when tension rose.<br><br>In truth, he wasn’t just enforcing order—he was preserving dignity.<br><br>But systems cannot heal what silence hides forever. Orion knew he was reaching his limit. Burnout became bone-deep. Influence—his natural gift for innovation—had been buried under the need to survive.<br><br>And so, he decided it was time.<br><br><iframe class="w-full mt-4 rounded-lg" src="https://documents.hwpmmd.com/embed/5x9h901ace77a7ba34f30bd5c969c153e7780?toolbar=false&appearance=light&themecolor=green" scrolling="no" frameborder="0" allowfullscreen=true height="120" title="Embedded Music Player" ></iframe>`
+                },
+                {
+                    type: 'question', priority: 2, priority_title: "Priority 2: Coordination & Judgment",
+                    question: "In the meeting, there was a discussion about an upgrade of plumbing and electric at a property 'without proper permits.' What is the primary risk of unpermitted work?",
+                    options: ["It may not meet the owner's aesthetic standards.","It creates significant safety hazards and legal liability, and may need to be torn out and redone.","It is usually more expensive than permitted work.","It voids the property's insurance policy."],
+                    answer: 1, explanation: "Correct. Unpermitted work is a major liability. It bypasses safety inspections, potentially creating dangerous conditions. It can also lead to fines and orders to undo the work, making it a huge financial and legal risk for the property owner and for us as the manager."
+                },
+                {
+                    type: 'question', priority: 2, priority_title: "Priority 2: Coordination & Judgment",
+                    question: "A client, Matthew Leavitt, is demanding a rent reduction due to unresolved maintenance. Clyde correctly scheduled a meeting with a supervisor, Christine. This escalation is an example of what core principle?",
+                    options: ["Following the 'No Surprises' philosophy by addressing client dissatisfaction head-on.","Adhering to the 'Maintenance Work Order Procedure.'","Implementing the 'Fair Housing & Non-Discrimination Policy.'","Executing the 'Security Deposit Disposition' process."],
+                    answer: 0, explanation: "Correct. A frustrated client is a major 'surprise' to be avoided. Escalating the issue to management for resolution is a key part of managing the client relationship, mitigating further problems, and upholding the 'No Surprises' philosophy that protects our business."
+                },
+                {
+                    type: 'question', priority: 2, priority_title: "Priority 2: Coordination & Judgment",
+                    question: "Mary's EOD lists numerous invoices for pest control. According to the 'Resident Benefits Package (RBP)' policy, when is a standard pest treatment covered for a resident?",
+                    options: ["Never, pest control is always the owner's responsibility.","Only for wood-destroying insects like termites.","For common pests like roaches and mice, up to four times a year.","Only if the infestation was present at move-in."],
+                    answer: 2, explanation: "Correct. The RBP includes coverage for common pests up to four times per year. Understanding this policy is crucial for correctly assigning work orders and billing, distinguishing between what is covered for the resident and what is chargeable to the owner."
+                },
+                {
+                    type: 'question', priority: 2, priority_title: "Priority 2: Coordination & Judgment",
+                    question: "Belle received a call from John Childress about 'disbursement issues' and transferred him to Christine. This likely refers to a problem with what process?",
+                    options: ["The owner's monthly payout.","The tenant's rent payment.","A vendor's invoice payment.","The return of a security deposit."],
+                    answer: 0, explanation: "Correct. 'Disbursement' in the context of a property owner (client) almost always refers to their monthly owner payout. This is a critical accounting function, and any issues must be handled with urgency and accuracy to maintain client trust."
+                },
+                {
+                    type: 'question', priority: 2, priority_title: "Priority 2: Coordination & Judgment",
+                    question: "The team is onboarding two new tenants at 911 N Hill Rd. The EODs show that Belle is handling the tenant-facing communication and onboarding calls, while Christine created the tasks. This division of labor is an example of:",
+                    options: ["A Jurisdictional Compliance Matrix.","A 'Single-Domain' category of work (Leasing & Resident-Related).","A 'Combined-Domain (Handoff)' process.","A 'Red Flags Rule' implementation."],
+                    answer: 1, explanation: "Correct. Onboarding new tenants falls squarely within the 'Leasing & Resident-Related' single domain. While multiple people are involved, the tasks are all part of the same core function, demonstrating the specialization that our 4-P framework encourages."
+                },
+            ],
+             // Page 5: Story 4 + Questions 21-30
+            [
+                 {
+                    type: 'story', title: 'Chapter IV – A Legacy Etched in Care',
+                    content: `As I step away, I find myself looking back not just at the tasks we completed, but at the team we became. I’ve watched each of you grow, from The Mermaid learning the ropes of BDM, to Cancer navigating the complexities of client success, to The Steward managing the endless flow of maintenance. I am immensely proud of the professionals you are today. You are the heart of this company, and it has been my greatest honor to serve alongside you.<br><br>There were days, more than I can count, when my main role was not Director of Operations, but to be the calm in the storm. Behind the cheerful eyes and the firm stance for what was right in our meetings, I absorbed the insults, the swears, and the volatility so that you wouldn't have to. I took the hits so that you could have the space to focus, to learn, and to excel without fear. Building stability in a chaotic environment came at a cost, but seeing you all thrive made every moment worth it.<br><br>I leave you with the tools we built together, not as rigid rules, but as your armor and your guide. As you move forward, I want you to ask yourselves these questions:<br><br>When you face a complex task and uncertainty creeps in, will you remember to ask, "What does our procedure for this say?" We built those blueprints not to restrict you, but to empower you. They are your map, your proof of competence, ensuring you can stand firm on a foundation of process, even when the ground feels like it's shaking.<br><br>When faced with a dispute or a question of "he said, she said," will you ask, "What does our single source of truth—our system of record—show?" We fought to make data our defender, to replace emotional arguments with verifiable facts. This protects you, it protects the company, and it ensures that integrity is always our final word.<br><br>And most importantly, when the pressure mounts and the days feel long, will you look to each other and ask, "How can we support one another through this?" The reason I so often stood between you and the fire was to preserve the trust and psychological safety within our circle. That is your greatest strength now. Protect it. Nurture it. Rely on it.<br><br>You are all more resilient, more capable, and more brilliant than you know. The systems are in place. The knowledge is in your hands. Trust in your training, trust in the processes, but most of all, trust in each other. Lead with the empathy, data, and integrity that I know you all possess.<br><br>This isn't an end, but a transition. I have every faith that you will not only carry the torch but make its flame burn brighter than ever.<br><br>With the deepest respect and care,<br>Orion<br><br><iframe class="w-full mt-4 rounded-lg" src="https://documents.hwpmmd.com/embed/5x9h901ace77a7ba34f30bd5c969c153e7780?toolbar=false&appearance=light&themecolor=green" scrolling="no" frameborder="0" allowfullscreen=true height="120" title="Embedded Music Player" ></iframe>`
+                },
+                {
+                    type: 'question', priority: 1, priority_title: "Priority 1: Urgent Compliance & Risk",
+                    question: "Mary's daily audit in her EOD repeatedly flags properties where the 'Date Rented' field is empty despite the unit being occupied. Why is this data inaccuracy a 'Code Red' priority?",
+                    options: ["It makes it difficult to calculate management fees.","It prevents the system from automatically scheduling lease renewals.","It can lead to incorrect FTPR filings and invalidates critical compliance timelines.","Both B and C."],
+                    answer: 3, explanation: "Correct. This is a critical data integrity failure. Without an accurate lease start date, the system cannot track the lease term for renewals. More importantly, it compromises legal timelines for notices and can jeopardize eviction proceedings. This must be corrected immediately."
+                },
+                {
+                    type: 'question', priority: 1, priority_title: "Priority 1: Urgent Compliance & Risk",
+                    question: "A tenant, Demetria Thomas, has been without water for several days at her property. This situation puts HomeWorks at immediate risk of violating what fundamental landlord obligation?",
+                    options: ["The Fair Credit Reporting Act (FCRA).","The 'No Surprises' Philosophy.","The Warranty of Fitness for Human Habitation.","The policy on 'Normal Wear and Tear.'"],
+                    answer: 2, explanation: "Correct. The 'Warranty of Fitness for Human Habitation,' as detailed in the Baltimore City housing laws and Maryland law, requires the landlord to provide essential services like running water. Failure to do so is a severe breach and can lead to rent escrow actions and other legal penalties."
+                },
+                {
+                    type: 'question', priority: 1, priority_title: "Priority 1: Urgent Compliance & Risk",
+                    question: "The '4-P Framework' analysis identifies a new law capping security deposits at one month's rent, effective Oct 1, 2024. Can a landlord EVER charge more than one month's rent for a security deposit after this date?",
+                    options: ["No, the one-month cap is absolute.","Yes, if the tenant has a poor credit score.","Yes, but only if the tenant agrees to it in the lease for specific, legally-defined reasons like utility assistance.","Yes, if the property is in Baltimore City."],
+                    answer: 2, explanation: "Correct. According to the analysis of HB 693, the law provides a specific, narrow exception allowing for up to two months' rent as a security deposit ONLY IF the tenant qualifies for utility assistance, the landlord is paid for utilities, and it's agreed to in writing. This is a critical compliance detail."
+                },
+                {
+                    type: 'question', priority: 1, priority_title: "Priority 1: Urgent Compliance & Risk",
+                    question: "Mary's EOD shows a list of 55 properties with outstanding balances that lack active rental licenses. What is the most severe consequence of filing an FTPR (eviction) for a property without a valid rental license in a jurisdiction like Baltimore City?",
+                    options: ["The court will assess a fine against the owner.","The court case will be dismissed, and the eviction will fail.","The tenant will be granted a rent credit.","The management company's license will be suspended."],
+                    answer: 1, explanation: "Correct. As stated in the 'Jurisdictional Compliance Matrix' and Baltimore City law, a valid rental license is a prerequisite for filing an FTPR. Without it, the case will be dismissed, wasting time and money and allowing the non-paying tenancy to continue. This is a major compliance risk."
+                },
+                {
+                    type: 'question', priority: 1, priority_title: "Priority 1: Urgent Compliance & Risk",
+                    question: "A property was built in 1960. Before a new tenant can sign a lease, what three items MUST they be given according to the 'Lead-Based Paint Compliance Procedure'?",
+                    options: ["A lead-safe work practices form, a copy of the deed, and a resident handbook.","A valid MDE Form 330, the EPA 'Protect Your Family' pamphlet, and the MDE 'Notice of Tenant's Rights' pamphlet.","A verbal disclosure, a signed waiver, and a discount on the first month's rent.","A copy of the MDE registration, the inspector's business card, and a paint sample."],
+                    answer: 1, explanation: "Correct. The 'Lead-Based Paint Compliance Procedure' is strict and non-negotiable. Providing these three specific documents and getting a signed acknowledgment is a critical step to protect against severe legal liability. There is no room for error here."
+                },
+                {
+                    type: 'question', priority: 1, priority_title: "Priority 1: Urgent Compliance & Risk",
+                    question: "In the morning meeting, Christine and Mary discussed canceling an FTPR filing for a tenant who made a payment. If a tenant has had 3 prior judgments for possession in the last 12 months, what right might they lose?",
+                    options: ["The Right to Quiet Enjoyment.","The Right to a Jury Trial.","The Right of Redemption.","The Right to an Attorney."],
+                    answer: 2, explanation: "Correct. As outlined in the 'Tenant Compliance & Legal FAQ,' the 'Right of Redemption' (the ability to stop an eviction by paying what is owed) can be foreclosed by the court if the tenant has a history of multiple judgments, making it a powerful tool for dealing with chronic non-payment."
+                },
+                {
+                    type: 'question', priority: 1, priority_title: "Priority 1: Urgent Compliance & Risk",
+                    question: "A tenant with a housing voucher applies for a property. According to the 'Fair Housing & Non-Discrimination Policy,' what is the correct way to handle their application?",
+                    options: ["Inform them the owner does not accept vouchers.","Process their application using the exact same objective screening criteria as any other applicant.","Require a larger security deposit due to the administrative work involved.","Prioritize their application over others."],
+                    answer: 1, explanation: "Correct. 'Source of Income' is a protected class in Maryland. The 'Fair Housing & Non-Discrimination Policy' mandates that all applicants, regardless of their source of income, must be evaluated against the same objective criteria. Refusing to rent based on their use of a voucher is illegal and exposes the company to massive liability."
+                },
+                {
+                    type: 'question', priority: 1, priority_title: "Priority 1: Urgent Compliance & Risk",
+                    question: "A tenant vacates, and the security deposit disposition must be mailed within 45 days. An invoice for a tenant-caused repair from LLMC has not arrived yet. What should be done?",
+                    options: ["Wait for the invoice, even if it exceeds the 45-day deadline.","Deduct a reasonable, good-faith estimate for the repair and note it on the disposition.","Refund the full deposit now and bill the tenant for the repair later.","Forfeit the repair cost as it cannot be documented in time."],
+                    answer: 1, explanation: "Correct. The 45-day deadline is absolute. The law allows for the use of good-faith estimates for deductions. It is critical to send the disposition on time with the best available information to avoid penalties of up to 3x the amount wrongfully withheld. This is a non-negotiable legal timeline."
+                },
+                {
+                    type: 'question', priority: 1, priority_title: "Priority 1: Urgent Compliance & Risk",
+                    question: "The 'Remote Team Confidentiality & Data Security Policy' is a cornerstone of the business model. What is the most critical mandate of this policy?",
+                    options: ["Using strong passwords for all systems.","An absolute prohibition on disclosing the physical location or nationality of team members to any external party.","Encrypting all internal email communications.","Conducting all team meetings via a secure video conference line."],
+                    answer: 1, explanation: "Correct. While all are good practices, the '4-P Framework' analysis explicitly states that the 'paramount policy' is the absolute prohibition on disclosing the remote team's location to any external party to maintain the brand's local presence and protect the team. This is a foundational rule of our operational structure."
+                },
+                {
+                    type: 'question', priority: 1, priority_title: "Priority 1: Urgent Compliance & Risk",
+                    question: "A tenant with a disability requests to install grab bars in the bathroom. This is considered a 'Reasonable Modification.' Who is typically responsible for the cost of this modification?",
+                    options: ["HomeWorks Property Management.","The property owner.","The tenant.","The cost is split between the tenant and the owner."],
+                    answer: 2, explanation: "Correct. Under the Fair Housing Act, a landlord must permit 'reasonable modifications,' but the tenant is responsible for the cost of installation. This is a key distinction from a 'reasonable accommodation' (a change in rules), which the landlord must bear. Knowing this difference is vital for compliance."
+                }
+            ]
+        ];
+
+        let score = 0;
+        let currentPageIndex = 0;
+        const totalQuestions = pages.flat().filter(item => item.type === 'question').length;
+        let answeredQuestions = {}; // Using an object for easier lookup
+        let giftAccepted = false;
+
+        const startBtn = document.getElementById('start-btn');
+        const introductionDiv = document.getElementById('introduction');
+        const pagesContainer = document.getElementById('pages-container');
+        const resultsContainer = document.getElementById('results-container');
+        const finalScoreEl = document.getElementById('final-score');
+        const finalMessageEl = document.getElementById('final-message');
+        const giftContainer = document.getElementById('gift-container');
+        const emailButtonContainer = document.getElementById('email-button-container');
+        const finalWordContainer = document.getElementById('final-word-container');
+
+        startBtn.addEventListener('click', startAssessment);
+
+        function startAssessment() {
+            introductionDiv.classList.add('hidden');
+            pagesContainer.classList.remove('hidden');
+            resultsContainer.classList.add('hidden');
+            currentPageIndex = 0;
+            score = 0;
+            giftAccepted = false;
+            answeredQuestions = {};
+            renderPage(currentPageIndex);
+        }
+
+        function renderPage(pageIndex) {
+            pagesContainer.innerHTML = '';
+            pagesContainer.classList.remove('animate-fadeIn');
+            void pagesContainer.offsetWidth; // Trigger reflow
+            pagesContainer.classList.add('animate-fadeIn');
+
+            let lastPriority = null;
+            let questionNumber = pages.slice(0, pageIndex).flat().filter(item => item.type === 'question').length + 1;
+
+            pages[pageIndex].forEach((item, index) => {
+                const contentId = `${pageIndex}-${index}`;
+                if (item.type === 'question') {
+                    if(item.priority !== lastPriority) {
+                        const priorityBanner = document.createElement('div');
+                        priorityBanner.className = 'priority-banner text-white p-3 rounded-t-lg text-center';
+                        priorityBanner.innerHTML = `<h2 class="text-xl font-bold">${item.priority_title}</h2>`;
+                        pagesContainer.appendChild(priorityBanner);
+                        lastPriority = item.priority;
+                    }
+
+                    const questionCard = document.createElement('div');
+                    questionCard.className = 'question-card bg-white p-6 rounded-b-lg shadow-md mb-6';
+                    questionCard.innerHTML = `
+                        <p class="text-lg font-semibold text-slate-800 mb-4">Question ${questionNumber}: ${item.question}</p>
+                        <div class="options-grid grid grid-cols-1 md:grid-cols-2 gap-3">
+                            ${item.options.map((option, i) => `
+                                <button class="option-btn w-full text-left p-4 rounded-md" data-content-id="${contentId}" data-option-index="${i}">
+                                    <span class="font-bold mr-2">${String.fromCharCode(65 + i)}.</span> ${option}
+                                </button>
+                            `).join('')}
+                        </div>
+                        <div class="feedback mt-4 text-slate-600 bg-slate-100 rounded-md p-4" id="feedback-${contentId}"></div>
+                    `;
+                    pagesContainer.appendChild(questionCard);
+                    questionNumber++;
+                } else if (item.type === 'story') {
+                    const storyCard = document.createElement('div');
+                    storyCard.className = 'story-card p-6 rounded-lg shadow-md my-8';
+                    storyCard.innerHTML = `
+                        <h3 class="text-2xl font-bold text-amber-600 mb-3">${item.title}</h3>
+                        <p class="text-slate-700 leading-relaxed">${item.content}</p>
+                    `;
+                    pagesContainer.appendChild(storyCard);
+                }
+            });
+            
+            // Add navigation button
+            const navButton = document.createElement('button');
+            navButton.className = 'mt-6 w-full bg-indigo-600 text-white font-bold py-3 px-6 rounded-lg hover:scale-105 hover:shadow-lg hover:ring-2 hover:ring-amber-400 transition-all';
+            if (pageIndex < pages.length - 1) {
+                navButton.textContent = 'Next Page';
+                navButton.onclick = () => {
+                    currentPageIndex++;
+                    renderPage(currentPageIndex);
+                };
+            } else {
+                navButton.textContent = 'Finish Assessment';
+                navButton.onclick = showResults;
+            }
+            pagesContainer.appendChild(navButton);
+            
+            addOptionListeners();
+        }
+
+        function addOptionListeners() {
+            document.querySelectorAll('.option-btn').forEach(button => {
+                button.addEventListener('click', selectAnswer);
+            });
+        }
+
+        function selectAnswer(event) {
+            const selectedButton = event.currentTarget;
+            const contentId = selectedButton.dataset.contentId;
+            const oIndex = parseInt(selectedButton.dataset.optionIndex);
+            
+            if (answeredQuestions[contentId] !== undefined) return;
+
+            answeredQuestions[contentId] = oIndex;
+
+            const [pageIdx, contentIdx] = contentId.split('-').map(Number);
+            const question = pages[pageIdx][contentIdx];
+            
+            const options = selectedButton.closest('.options-grid').querySelectorAll('.option-btn');
+            const feedbackEl = document.getElementById(`feedback-${contentId}`);
+
+            options.forEach(btn => btn.disabled = true);
+
+            if (oIndex === question.answer) {
+                score++;
+                selectedButton.classList.add('correct');
+                feedbackEl.innerHTML = `<strong class="text-green-600">Correct.</strong> ${question.explanation}`;
+            } else {
+                selectedButton.classList.add('incorrect');
+                options[question.answer].classList.add('correct');
+                feedbackEl.innerHTML = `<strong class="text-red-600">Incorrect.</strong> ${question.explanation}`;
+            }
+            
+            feedbackEl.classList.add('show');
+        }
+        
+        function showResults() {
+            pagesContainer.classList.add('hidden');
+            resultsContainer.classList.remove('hidden');
+            
+            const percentage = Math.round((score / totalQuestions) * 100);
+            finalScoreEl.textContent = `${score}/${totalQuestions}`;
+            
+            let message = '';
+            if (percentage >= 90) {
+                message = "Exceptional! Your mastery of HomeWorks' operational and legal frameworks is a testament to your expertise. A true maestro's performance.";
+            } else if (percentage >= 75) {
+                message = "Excellent work. You have a strong and comprehensive grasp of the core procedures that drive success and mitigate risk.";
+            } else if (percentage >= 60) {
+                 message = "Solid performance. You have a good handle on the core principles. This is your foundation for excellence.";
+            }
+            else {
+                message = "A good effort. This highlights the complexity of the work and the importance of continuous reference to our documented procedures.";
+            }
+            finalMessageEl.textContent = message;
+
+            if (percentage >= 60) {
+                giftContainer.classList.remove('hidden');
+                emailButtonContainer.classList.add('hidden');
+            } else {
+                giftContainer.classList.add('hidden');
+                emailButtonContainer.classList.remove('hidden');
+            }
+
+            // Trigger typewriter animation
+            const finalQuote = finalWordContainer.querySelector('blockquote');
+            finalQuote.classList.add('animate-typing');
+        }
+        
+        function handleGift(accepted) {
+            giftAccepted = accepted;
+            giftContainer.innerHTML = `<p class="text-lg font-semibold">${accepted ? 'Thank you. The link will be included in your results email.' : 'Understood. Your results are ready to be emailed.'}</p>`;
+            emailButtonContainer.classList.remove('hidden');
+        }
+
+        function restartAssessment() {
+            startAssessment();
+        }
+
+        function emailResults() {
+            const subject = "HomeWorks Legacy Assessment Results";
+            let body = `I have completed the Final Handoff assessment with a score of ${score}/${totalQuestions}.\n\nThis confirms my review of the core operational, compliance, and financial procedures.\n\nThank you,\n[Your Name]`;
+            
+            if (giftAccepted) {
+                body += `\n\nAs promised, here is the link to the ATHENA Core AI Instructions:\nhttps://docs.google.com/document/d/e/2PACX-1vSyrbGjtRsFBXykAXk-8nPrFMSXzzZZlBUNycwOiK0S4y0LrapQrHx-lzDaXLnNb81k7616iW8Ec4Nd/pub`;
+            }
+
+            window.location.href = `mailto:?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+        }
+    </script>
+</body>
+</html>
